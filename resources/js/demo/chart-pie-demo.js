@@ -107,7 +107,7 @@ myPieChart = new Chart(ctx, {
 var selectDate=function(){
   $.ajax({
 
-      url : 'http://0.0.0.0:8005/dashboard',
+      url : '/dashboard',
       type : 'POST',
       data:{
         startDate:startDate,
@@ -390,7 +390,7 @@ var plotBar=function(data){
 
 $.ajax({
 
-      url : 'http://0.0.0.0:8005/cards',
+      url : '/cards',
       type : 'GET',
       // dataType:'json',
       success : function(data) {         

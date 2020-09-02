@@ -1,6 +1,6 @@
 var selectFilter=function(){
 	month=document.getElementById("filterTransaction").value;
-	window.location.href = 'http://0.0.0.0:8005/transactions?page=1&startDate='+startDate+'&endDate='+endDate;
+	window.location.href = 'transactions?page=1&startDate='+startDate+'&endDate='+endDate;
 } 
 $(function () {
         $('#datepicker').datepicker({
