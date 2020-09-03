@@ -166,81 +166,86 @@ def transactions(methods=['GET']):
 					A.CIN = {sessionId}
 			"""
 		result = list(client.query(sql_query.format(sessionId = session['sessionId'])))
-		return_data=result
-		# query for top merchants
-		# return_data=[{
-		# 	'id':1,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':2,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':3,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':4,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':5,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':6,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':7,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':8,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':9,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':10,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':11,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':12,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# },{
-		# 	'id':13,
-		# 	'date':'12/12/12',
-		# 	'amount':'200',
-		# 	'dest':'abc'
-		# }]
-		length=len(return_data)
-		start=(page-1)*10
-		if length>=page*10:
-			end=page*10
+		print('tran',result);
+		if len(result):
+			print('in if')
+			return_data=result
+			# query for top merchants
+			# return_data=[{
+			# 	'id':1,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':2,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':3,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':4,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':5,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':6,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':7,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':8,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':9,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':10,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':11,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':12,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# },{
+			# 	'id':13,
+			# 	'date':'12/12/12',
+			# 	'amount':'200',
+			# 	'dest':'abc'
+			# }]
+			length=len(return_data)
+			start=(page-1)*10
+			if length>=page*10:
+				end=page*10
+			else:
+				end=length		
+			return render_template("transactions.html",transactions = return_data[start:end],len=length,page=page,tot_page=math.ceil(length/10),first_name=return_data[0]['First_Name'],last_name=return_data[0]['Last_Name'])
 		else:
-			end=length		
-		return render_template("transactions.html",transactions = return_data[start:end],len=length,page=page,tot_page=math.ceil(length/10),first_name=return_data[0]['First_Name'],last_name=return_data[0]['Last_Name'])
+			return render_template("transactions.html");	
 	else:
 		return redirect(url_for("login"))
 

@@ -114,10 +114,13 @@ var selectDate=function(){
         endDate:endDate
       },
       // dataType:'json',
-      success : function(data) {         
-        plotChart(data);
-        plotMerchant(data);
-        plotAreaChart(data);
+      success : function(data) {     
+        if(data.merchant.length && data.category.length && data.transactions.length){
+          document.getElementById('filter_section').style.display='block';
+          plotChart(data);
+          plotMerchant(data);
+          plotAreaChart(data);
+        }    
       },
       error : function(request,error)
       {
@@ -393,7 +396,7 @@ $.ajax({
       url : '/cards',
       type : 'GET',
       // dataType:'json',
-      success : function(data) {         
+      success : function(data) {    
         plotBar(data);
       },
       error : function(request,error)

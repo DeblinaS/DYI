@@ -235,7 +235,7 @@
 
         </nav>
         <!-- End of Topbar -->
-
+        {% if transactions %}
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -359,8 +359,11 @@
           </div>
 
         </div>
+        {% endif %}
         <!-- /.container-fluid -->
-
+        {% if not transactions %}
+        	<div class="row"><div class="col-md-12" style="text-align:center">No Transactions to show</div></div>
+        {% endif %}
       </div>
       <!-- End of Main Content -->
 
