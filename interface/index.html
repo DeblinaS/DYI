@@ -7,6 +7,9 @@
 	<body>
 		<div class="login-section">
 			<form class="form" method="POST">
+				{% if failed %}
+        		<div class="row"><div class="col-md-12" style="text-align:center;color:red;">Wrong credentials. Try again later.</div></div>
+        	{% endif %}
 				<h1>Welcome!!!</h1>
   				<div class="floating">
     				<input id="input__username" class="floating__input" name="username" type="text" placeholder="Username" required />

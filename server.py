@@ -43,7 +43,6 @@ def login_post():
 	username=request.form.get('username')
 	password="'"+request.form.get('password')+"'"
 	print('credentials',username,password)
-	session['sessionId']=username
 	sql_query = """
 		SELECT 
 			*
@@ -57,8 +56,11 @@ def login_post():
 	print('query done')
 	# 4. Fetch results
 	result = list(client.query(sql_query.format(user_name = username, password=password)))
-	if result:
-		return redirect(url_for("dashboard"))	
+	if len(result):
+		session['sessionId']=username
+		return redirect(url_for("dashboard"))
+	else:
+		return render_template('index.html',failed=True)
 
 @app_flask.route("/dashboard",methods=['GET'])
 def dashboard(methods=['GET']):

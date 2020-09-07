@@ -96,10 +96,14 @@ myPieChart = new Chart(ctx, {
       displayColors: false,
       caretPadding: 10,
     },
-    legend: {
-      display: false
-    },
+    // legend: {
+    //   display: false
+    // },
     cutoutPercentage: 80,
+    title: {
+        display: true,
+        text: 'Transaction count per category'
+      }
   },
 });
 }
